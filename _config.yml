@@ -6,10 +6,10 @@ copyright_name: Your/Project/Corporate Name
 description: "Front-end engineer & UX designer"
 baseurl: ""
 url: "http://yourdomain.com"
-twitter_username: SBootstrap
-github_username:  davidtmiller
-facebook_username:  IronSummitMedia
-email_username:  your-email@yourdomain.com
+weibo_username: 谟骁
+github_username:  ericteen
+zhihu_username:  谟骁
+email_username:  chengteen@163.com
 
 # Google Analytics
 # To enable google analytics, uncomment below line with a valid Google Tracking ID
