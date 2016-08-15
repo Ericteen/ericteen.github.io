@@ -1,0 +1,45 @@
+---
+layout:     post
+title:      "开篇"
+subtitle:   "关于梦想，关于未来"
+date:       2016-08-15 12:00:00
+author:     "Ericteen"
+header-img: "img/post-bg-02.jpg"
+---
+
+<p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+
+<p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
+
+<p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
+
+<p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
+
+<p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
+
+<h2 class="section-heading">最后的边界</h2>
+
+<p>听闻了嫦娥奔月的慷慨和决绝，看过了阿波罗11号的激昂与壮阔。数千年来，人类一直对幽蓝的深空有着热切的渴望，对静谧的夜、闪烁的星有着无限的向往。这种强烈的情感一直驱使着人类向未知探索，竭尽一切，在所不惜。正因如此，才有了人类从嫦娥玉兔的美丽传说到阿姆斯特朗迈出人类一大步的伟大跨越。</p>
+
+
+<blockquote>我们的目标是星辰大海。</blockquote>
+
+<p>就像这句话写的一样。我们探索着世界的边界，我们渴望着美丽的未来。</p>
+
+<h2 class="section-heading">触及飞舞的梦想</h2>
+
+<p>我们不断探索着未知，好像未来就在眼前，触手可及。不曾想现实总是很骨感，时而心潮澎湃，时而热血沸腾。在那一秒或几秒的时间里，我们都是世界的霸主，无可阻挡。但过了一个月、半年，或是更久。一切又变成了老样子，或许你还会笑之前的自己是那么的中二。</p>
+
+<p>你还是你，除了年岁的增长，没有任何改变。</p>
+
+<a href="#">
+    <img src="{{ site.baseurl }}/img/post-duola-image.jpg" alt="Post Sample Image">
+</a>
+<span class="caption text-muted">你总是这样轻言放弃的话 无论多久都只会原地踏步</span>
+
+<p>不要忘了，梦想永远都是一个孤独的旅程。在这条路上，不会有灼人的烈焰，不会有刺骨的冰霜。只会有那静默的时间，在极致的安静中取人首级，不留生息。</p>
+
+<p>愿未来的自己能记得此时的热血。愿永远年轻，永远热泪盈眶。</p>
+
+<p>愿永远年轻，永远热泪盈眶。</p>
+
