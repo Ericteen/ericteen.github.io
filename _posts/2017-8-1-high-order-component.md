@@ -19,7 +19,7 @@ header-img: "img/post-bg-03.jpg"
 const EnhancedComponent = highOrderComponent(WrappedComponent)
 ```
 
-高阶组件是一个函数而非组件，就像一个组件将 `props` 转换为 `UI`，高阶组件接收一个组件作为参数，返回一个新的组件。
+在 React 中，高阶组件是一种复用组件逻辑的技术。它是一个函数而非组件，就像一个组件将 `props` 转换为 `UI`，高阶组件接收一个组件作为参数，返回一个新的组件。
 
 进一步学习之前，我们先回顾一下 `new` 和构造函数之间的关系。
 
