@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "React 进阶"
-subtitle:   "高阶组件"
+subtitle:   "高阶组件 (1/2)"
 date:       2017-08-01 12:00:00
 author:     "Ericteen"
 header-img: "img/post-bg-03.jpg"
