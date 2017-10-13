@@ -1,14 +1,14 @@
 ---
 layout:     post
 title:      "React 进阶"
-subtitle:   "高阶函数"
+subtitle:   "高阶组件"
 date:       2017-08-01 12:00:00
 author:     "Ericteen"
 header-img: "img/post-bg-03.jpg"
 ---
 # 高阶组件
 
-高阶组件是一个概念上很简单，却十分实用的东西，被大量的 React 相关的第三方库频繁使用。在前端业务开发当中，灵活使用高阶组件可以让你的代码更为优雅，灵活性和复用性也会更强。同时，了解高阶组件对我们理解各种 React 第三方库也有很大的帮助。
+高阶组件是一个概念上很简单，却十分实用的东西，被大量的 React 相关的第三方库频繁使用。在前端业务开发当中，灵活使用高阶组件可以让你的代码更为优雅，灵活性和复用性也会更强。同时，了解高阶组件对我们理解各种 React 第三方库也有很大的帮助，例如 Redux 的 `connect` 和 Relay 的 `createContainer`。
 
 ## [什么是高阶组件](https://reactjs.org/docs/higher-order-components.html)
 
