@@ -204,4 +204,15 @@ const ppHOC = (WrappedComponent) =>
 
 ### 反向继承（Inheritance Inversion）
 
-未完待续...
+```JavaScript
+const iiHOC = (WrappedComponent) => 
+  class Enhancer extends WrappedComponent {
+    render() {
+      return super.render()
+    }
+  }
+```
+
+可以看出，返回的 `Enhancer` 类继承了 `WrappedComponent`。
+
+反响继承允许 HOC 通过 this 访问到 WrappedComponent，意味着它可以访问到 state、props、组件生命周期方法和 render 方法。注意通过 II 你可以创建新的生命周期方法。为了不破坏 WrappedComponent，记得调用 super.[lifecycleHook]。
