@@ -1,3 +1,11 @@
+---
+layout:     post
+title:      "正则匹配实例"
+subtitle:   "regexp samples"
+date:       2018-03-03 12:00:00
+author:     "Ericteen"
+header-img: "img/post-bg-04.jpg"
+---
 # 常见正则表达式
 
 JavaScript 中用到正则表达式的方法包括
