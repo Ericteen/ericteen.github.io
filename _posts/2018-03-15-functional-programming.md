@@ -14,11 +14,31 @@ header-img: "img/post-bg-04.jpg"
 - 安全 (safe)
 - 透明 (Transparent)
 - 模块化 (modular)
+- 数据可缓存
 
 ## Predictable
 
-- pure function 同样的输入一定会有同样的输出
+- 纯函数
 - 易于测试
+
+> 纯函数是这样一种函数，即相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用。
+
+比如 slice 和 splice ，两个函数的作用相似。对于 slice 函数，相同的输入它能保证相同的输出，符合纯函数的定义。而 splice 函数，却会对原数组产生影响，即可观察到的副作用。
+
+> 副作用是指在计算结果的过程中，系统状态的一种变化，或者与外部世界进行的可观察的交互。
+
+副作用包含但不限于
+
+- 更改文件系统
+- 往数据库中插入记录
+- 发送一个 http 请求
+- 可变数据
+- 打印日志
+- 获取用户输入
+- DOM 查询
+- 访问系统状态
+
+概括来讲，只要跟函数外部环境发生的交互就都是副作用。函数式编程的哲学就是假定副作用是造成不当行为的主要原因。这并非是说要禁止使用一切副作用，而是让它们在可控的范围内发生。
 
 ```javascript
 const add = (x, y) => x + y;
@@ -171,6 +191,16 @@ const add = x => y => x + y;
 function add(x) {
   return function (y) {
     return x + y;
+  }
+}
+
+const curryIt = function(uncurried) {
+  const slice = Array.prototype.slice;
+  const params = slice.call(arguments, 1);
+  return function() {
+    return uncurried.apply(this, params.concat(
+      slice.call(arguments, 0);
+    ))
   }
 }
 ```
