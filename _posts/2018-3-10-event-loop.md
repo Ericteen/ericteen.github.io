@@ -121,3 +121,10 @@ promise3
 setTimeout3
 setTimeout4
 ```
+
+参考：
+
+- [Web application APIs](https://www.w3.org/TR/html5/webappapis.html#event-loops)
+- [Tasks, microtasks, queues and schedules](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)
+- [你不得不知的 Event Loop](https://juejin.im/post/5aa88faf6fb9a028ca52a96f)
+- [JavaScript 运行机制详解：再谈 Event Loop](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)
