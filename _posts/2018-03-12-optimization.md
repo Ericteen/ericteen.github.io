@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "资源加载优化"
+title:      "webpack 资源加载优化"
 subtitle:   "optimization"
 date:       2018-03-12 12:00:00
 author:     "Ericteen"
@@ -54,6 +54,61 @@ webpack.config.js
 - 在 package.json 文件中添加 sideEffects 字段
 - 包含一个支持消除 dead code 的压缩器 (如：UglifyJSPlugin)
 
+## Bundle 分离(Bundle Spliting)
+
+应用被打包成一个单一的 JavaScript 文件。如果应用发生改变，客户端也必须下载 vendor 依赖。如果只下载变化的部分，将会大大减少加载量。这就是 Bundle 分离想要达到的目的，它可以用通过设置 `optimization.splitChunks.cacheGroups` 属性来实现。这样可以充分利用客户端的缓存。
+
+在 webpack 4 之前， Bundle 分离是通过 `CommonsChunkPlugin` 来实现的。到了 webpack 4 我们可以通过配置 `optimization` 来实现。
+
+```javascript
+// wepack.config.js
+modules.exports = {
+  // ...
+  optimization: {
+    splitChunks: {
+      chunks: 'initial'
+    }
+  }
+  // ...
+}
+```
+
+或者使用一种更为显性的描述
+
+```javascript
+// wepack.config.js
+modules.exports = {
+  // ...
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'initial'
+        }
+      }
+      chunks: 'initial'
+    }
+  }
+  // ...
+}
+```
+
+如果不想使用自动化的配置，可以用上述的配置格式，这样可以对整个控制流程有更多的控制权。
+
+### Splitting and Merging Chunks
+
+`AggressiveSplittingPlugin` 和 `AggressiveMergingPlugin`。这两个插件作用于两个截然相反的方面。前一个可以产生更多的小块 bundles。但同时也会增加客户端请求数量。后一个作用相反，产生更少的 bundle。
+
+### webpack 中的 chunk 种类
+
+webpack 将 chunk 划分为三类：
+
+- **入口 chunk**。入口 chunk 包含 webpack runtime 和将要加载的模块。
+- **普通 chunk**。普通 chunk 不包含 webpack runtime，这些 chunk 可以在应用运行时动态加载。
+- **初始 chunk**。初始 chunk 也是一个普通 chunk，用来计算应用的加载时间。作为普通用户，需要考虑的是前两个。
+
 ## 代码分离(Code Spliting)
 
 代码分离是 webpack 很强有力的一个特性。这个特性可以将代码分离到不同的包，因此这些文件可以按需加载或者并行加载。它可以减少打包文件的体积并且控制资源加载的优先顺序。运用得当的话，对加载时间可以有很大的影响。
@@ -64,7 +119,7 @@ webpack.config.js
 - **防止重复**
 - **动态引入**：通过模块内的行内函数调用来分离代码
 
-第一点比较简单，就不在赘述。
+第一点比较简单，就不再赘述。
 
 对于第二点，在 webpack 3 中可以通过使用 CommonsChunkPlugin 来分离重复的块。在 webpack 4 中，这个插件已经弃用，需要设置 config.optimizarion.splitChunks 来实现。
 
@@ -79,9 +134,17 @@ webpack.config.js
 
 在社区中还有一些其他有用的 loader 和插件来实现代码分离。如：`ExtractTextPlugin` 可以对 CSS 代码进行分离。还有 `bundle-loader` 和 `promise-loader`。
 
-## 动态引入
+### 动态引入
 
-`import()` 语法符合 ECMAScript 对动态引入的提案。
+`import()` 语法符合 ECMAScript 对动态引入的提案。需要搭配`babel-plugin-syntax-dynamic-import`。
+
+.babelrc
+
+```javascript
+{
+  plugins: ["syntax-dynamic-import"]
+}
+```
 
 webpack.config.js
 
@@ -115,7 +178,7 @@ getComponent().then(component => {
 
 在注释中使用了 `webpackChunkName`。这样做会导致我们的 bundle 被命名为 lodash.bundle.js ，而不是 [id].bundle.js。
 
-## 懒加载(Lazy Loading)
+### 懒加载(Lazy Loading)
 
 懒加载或者叫按需加载，对应用或网站的优化有极大的作用。其中包括按逻辑对代码进行分割，请求的时候再加载模块。这可以极大提升应用的首次加载时间，并且降低加载量。
 
@@ -142,6 +205,27 @@ document.body.appendChild(component())
 ```
 
 如以上的例子，主要是运用 ESM 的 `import()` ，对按钮操作进行按需加载。
+
+## 提取 manifest 文件
+
+当 webpack 生成 bundle 时， 它同时维护一个 manifest 文件。你可以在生成的 vendor bundle 中找到它。manifest 文件描述了哪些文件需要 webpack 加载。
+
+如果 webpack 生成的 hash 发生改变，manifest 文件也会发生改变。因此，vendor bundle 的内容也会发生改变，并且失效。所以，我们需要将 manifest 文件提取出来。
+
+大部分工作都已经在 bundle splitting 中完成。为了提取 manifest 文件，需要用以下的方式定义 `optimization.runtimeChunk`
+
+```javascript
+module.exports = {
+  optimization: {
+    splitChunks: {
+      // ...
+    },
+    runtimeChunk: {
+      name: 'manifest'
+    }
+  }
+}
+```
 
 ## 缓存(Caching)
 
@@ -176,9 +260,13 @@ webpack 的每一个 chunk 里面都包括很多样板文件(boilerplate)，特�
 ```javascript
 {
   optimization: {
-    splitChunks: { chunks: 'all' },
-    namedModules
-  }
+    splitChunks: {
+      chunks: 'initial'
+    },
+    runtimeChunk: {
+      name: 'manifest'
+    }
+  },
 }
 ```
 
