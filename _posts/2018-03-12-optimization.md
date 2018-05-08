@@ -58,6 +58,10 @@ webpack.config.js
 
 应用被打包成一个单一的 JavaScript 文件。如果应用发生改变，客户端也必须下载 vendor 依赖。如果只下载变化的部分，将会大大减少加载量。这就是 Bundle 分离想要达到的目的，它可以用通过设置 `optimization.splitChunks.cacheGroups` 属性来实现。这样可以充分利用客户端的缓存。
 
+普通打包方式：
+
+![分离之前](/img/webpack/before.jpg)
+
 在 webpack 4 之前， Bundle 分离是通过 `CommonsChunkPlugin` 来实现的。到了 webpack 4 我们可以通过配置 `optimization` 来实现。
 
 ```javascript
@@ -96,6 +100,14 @@ modules.exports = {
 ```
 
 如果不想使用自动化的配置，可以用上述的配置格式，这样可以对整个控制流程有更多的控制权。
+
+分离之后：
+
+![bundle splitting](/img/webpack/after.jpg)
+
+下图显示了分离之后的结构：
+
+![tree](/img/webpack/tree.png)
 
 ### Splitting and Merging Chunks
 
